@@ -1,0 +1,112 @@
+.font-aqua {
+    color: #4eb5ba;
+}
+
+.width1200 {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.headder-top {
+    line-height: 30px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #dedede;
+    font-size: 12px;
+    color: #666666;
+}
+
+.headder-top-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headder-top-content a {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.xinda-logo {
+    padding: 10px 0 10px 10px;
+    display: flex;
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 3px;
+}
+
+.xinda-logo li:last-child {
+    height: 40px;
+    line-height: 40px;
+    border-left: 1px solid #999;
+    padding-left: 15px;
+    margin: 15px 0 0 20px;
+    color: #909192;
+}
+
+.title{
+    text-align: center;
+    color: #333;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0;
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.input,
+.register {
+    width: 600px;
+}
+
+.input {
+    border-right: 1px solid #999;
+}
+
+.input li,
+.register li {
+    margin: 10px 0;
+}
+
+.input li {
+    width: 280px;
+    height: 40px;
+    margin-left: 170px;
+}
+
+.input input {
+    width: 280px;
+    height: 36px;
+    border: 1px solid #afafaf;
+}
+
+.input .code {
+    width: 180px;
+}
+
+.input .code+img {
+    width: 85px;
+    height: 36px;
+    vertical-align: top;
+}
+
+.input a {
+    float: right;
+    line-height: 36px;
+    color: #4eb5ba;
+}
+
+.login-btn {
+    width: 287px;
+    line-height: 36px;
+    text-align: center;
+    border: 1px solid #4eb5ba;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.register li {
+    margin-left: 200px;
+}

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.product.Product">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="show_order" jdbcType="INTEGER" property="showOrder" />
+    <result column="style_id" jdbcType="VARCHAR" property="styleId" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="market_price" jdbcType="INTEGER" property="marketPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="store_num" jdbcType="INTEGER" property="storeNum" />
+    <result column="sale_num" jdbcType="INTEGER" property="saleNum" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="service_content" jdbcType="VARCHAR" property="serviceContent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, code, img, info, show_order, style_id, type_id, market_price, unit, store_num, 
+    sale_num, status, service_content
+  </sql>
+   <select id="findByName" parameterType="com.datangdu.cn.model.product.ProductExample" resultMap="BaseResultMap">
+    <!-- 模糊查询 -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+      <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    
+    <where>
+    <if test="name!=null and name!=''">
+    name like CONCAT('%',#{name},'%')
+    </if>
+    
+    </where>
+   
+      order by id
+  
+  </select>
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.product.ProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.product.ProductExample">
+    delete from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.product.Product">
+    insert into product (id, name, code, 
+      img, info, show_order, 
+      style_id, type_id, market_price, 
+      unit, store_num, sale_num, 
+      status, service_content)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{showOrder,jdbcType=INTEGER}, 
+      #{styleId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{marketPrice,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{storeNum,jdbcType=INTEGER}, #{saleNum,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{serviceContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.product.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="showOrder != null">
+        show_order,
+      </if>
+      <if test="styleId != null">
+        style_id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="storeNum != null">
+        store_num,
+      </if>
+      <if test="saleNum != null">
+        sale_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="serviceContent != null">
+        service_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null">
+        #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="styleId != null">
+        #{styleId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNum != null">
+        #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null">
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="serviceContent != null">
+        #{serviceContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.product.ProductExample" resultType="java.lang.Long">
+    select count(*) from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update product
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=INTEGER},
+      </if>
+      <if test="record.img != null">
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.info != null">
+        info = #{record.info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showOrder != null">
+        show_order = #{record.showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.styleId != null">
+        style_id = #{record.styleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketPrice != null">
+        market_price = #{record.marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeNum != null">
+        store_num = #{record.storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleNum != null">
+        sale_num = #{record.saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.serviceContent != null">
+        service_content = #{record.serviceContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update product
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=INTEGER},
+      img = #{record.img,jdbcType=VARCHAR},
+      info = #{record.info,jdbcType=VARCHAR},
+      show_order = #{record.showOrder,jdbcType=INTEGER},
+      style_id = #{record.styleId,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      store_num = #{record.storeNum,jdbcType=INTEGER},
+      sale_num = #{record.saleNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=CHAR},
+      service_content = #{record.serviceContent,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.product.Product">
+    update product
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null">
+        show_order = #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="styleId != null">
+        style_id = #{styleId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNum != null">
+        store_num = #{storeNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null">
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="serviceContent != null">
+        service_content = #{serviceContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.product.Product">
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      show_order = #{showOrder,jdbcType=INTEGER},
+      style_id = #{styleId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      store_num = #{storeNum,jdbcType=INTEGER},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      service_content = #{serviceContent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

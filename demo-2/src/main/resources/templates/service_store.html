@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/service_store.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
+            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>云智汇咨询服务有限公司</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="#">
+                    <i class="fa fa-home fa-fw"></i>
+                    <p>主页</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用</p>
+                </a>
+            </li>
+            <li class="bg-red">
+                <a href="service_store.html">
+                    <i class="fa fa-institution fa-fw"></i>
+                    <p>店铺</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_setting.html">
+                    <i class="fa fa-cog fa-fw"></i>
+                    <p>设置</p>
+                </a>
+            </li>
+        </ul>
+        <div class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>店铺</li>
+                </ul>
+            </div>
+            <ul class="main-tab">
+                <li class="border-red order1">店铺信息</li>
+            </ul>
+            <ul class="store-info">
+                <li>
+                    <span>公司介绍</span>
+                    <textarea></textarea>
+                </li>
+                <li>
+                    <span>工作时间</span>
+                    <select>
+                        <option value="">周一到周五</option>
+                        <option value="">周一到周四</option>
+                    </select>
+                </li>
+                <li>
+                    <span>QQ</span>
+                    <input placeholder="请输入QQ" />
+                </li>
+                <li>
+                    <span>联系电话</span>
+                    <input placeholder="请输入联系电话" /> <i> (固定电话的填写格式：01012345678)</i>
+                </li>
+            </ul>
+            <ul class="main-tab">
+                <li class="border-red order1">必填文件</li>
+            </ul>
+            <ul class="store-info">
+                <li>
+                    <span>营业执照</span>
+                    <button>上传</button>
+                </li>
+                <li>
+                    <img src="" alt="这里是营业执照上传后展示的呦">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/service_store.js"></script>
+</body>
+
+</html>

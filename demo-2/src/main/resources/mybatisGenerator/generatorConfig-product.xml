@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+ 	<!-- 引入配置文件 -->  
+	<properties resource="init.properties"/>    
+	<context id="dictionaries">
+		<commentGenerator>
+		<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+		<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- jdbc连接 -->  
+	<jdbcConnection connectionURL="${jdbc_url}"
+		driverClass="${jdbc_driver}" 			 	        password="${jdbc_password}" userId="${jdbc_user}" />
+	<javaTypeResolver>
+		<property name="forceBigDecimals" value="false" />
+	</javaTypeResolver>
+		<!-- 实体类所存放位置 -->
+<javaModelGenerator targetPackage="com.datangdu.cn.model.product"
+			targetProject="${project}">
+	<!-- enableSubPackages:是否让schema作为包的后缀 -->
+	<property name="enableSubPackages" value="false" /> 
+	<!-- 从数据库返回的值被清理前后的空格(通过trim方法实现) -->
+	<property name="trimStrings" value="true" /> 
+</javaModelGenerator>
+		
+	<!-- java客户端类对应的xml映射文件存放位置 -->
+	<sqlMapGenerator targetPackage="mybatis.mappers" targetProject="demo-2/src/main/resources" />
+		<!-- java客户端类接口文件存放位置 -->
+<javaClientGenerator targetPackage="com.datangdu.cn.dao.mapper"
+	targetProject="${project}" type="XMLMAPPER" >
+	<!-- enableSubPackages:是否让schema作为包的后缀 -->
+	<property name="enableSubPackages" value="false" />
+</javaClientGenerator>
+			
+<!-- 配置表信息 -->   
+<table tableName="product">
+<!-- <columnOverride column="???" property="???" /> -->
+</table>
+	</context>
+</generatorConfiguration>
+		
+						

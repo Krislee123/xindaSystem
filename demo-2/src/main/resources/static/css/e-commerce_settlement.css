@@ -1,0 +1,84 @@
+.font-aqua{
+    color: #4eb5ba;
+}
+.font-size14{
+    font-size: 14px;
+    margin: 8px 0;
+}
+.content{
+    min-height: 80vh;
+    position: relative;
+}
+.product_num{
+    margin: 15px 0 10px 0;
+}
+.merchandise{
+    display: flex;
+    justify-content: space-between;
+    height: 68px;
+    border:1px solid #e5e4e4;
+    margin: 8px 0;
+    background-color: #f7f7f7;
+}
+.merchandise li{
+    /* width: 400px; */
+    margin: 0 15px;
+    text-align: center;
+    line-height: 28px;
+    line-height: 68px;
+    font-size: 14px;
+}
+.merchandise li:nth-child(4){
+    line-height: 16px;
+    padding-top: 24px;
+}
+.merchandise li:nth-child(4) input{
+    width: 15px;
+    height: 16px;
+    vertical-align: middle; 
+}
+.merchandise li:nth-child(4) span{
+    height: 16px;
+    display: inline-block;
+    padding: 0 5px;
+    background-color: #f1efef;
+    cursor: pointer;
+}
+.radio{
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    position: absolute;
+}
+.radio1{
+    top: 212px;
+    left: 20px;
+}
+.radio2{
+    top: 303px;
+    left: 20px;
+}
+.radio3{
+    top: 303px;
+    left: 230px;
+}
+
+.payment{
+    float: right;
+    margin-top: 15vh;
+    text-align: center;
+}
+.payment span{
+    color: #4eb5ba;
+    font-size: 20px;
+}
+.payment li:last-child{
+    width: 120px;
+    line-height: 36px;
+    text-align: center;
+    background-color: #4eb5ba;
+    border-radius: 3px;
+    color: #fff;
+    margin: 20px 0 0 20px;
+    cursor: pointer;
+}

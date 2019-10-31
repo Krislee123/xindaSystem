@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/operator_expenses.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+            <li><a href="operator_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>用户名字</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="operator_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_user.html">
+                    <i class="fa fa-user fa-fw"></i>
+                    <p>用户</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_facilitator.html">
+                    <i class="fa fa-tasks fa-fw"></i>
+                    <p>服务商</p>
+                </a>
+            </li>
+            <li class="bg-red">
+                <a href="operator_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用中心</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_recommend.html">
+                    <i class="fa fa-star fa-fw"></i>
+                    <p>优质推荐</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <p>统计分析</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>费用中心</li>
+                    <li>/</li>
+                    <li>支付中心</li>
+                </ul>
+            </div>
+            <ul class="main-tab">
+                <li class="border-red business-order">支付中心</li>
+            </ul>
+            <ul class="main-content">
+                <ul class="search">
+                    <li>今天</li>
+                    <li>近七天</li>
+                    <li>近一个月</li>
+                    <li>全部</li>
+                </ul>
+                <h4>交易金额 <span class="font-red">¥10300.00</span></h4>
+            </ul>
+            <table border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>购买用户</th>
+                        <th>购买时间</th>
+                        <th>业务订单号</th>
+                        <th>金额</th>
+                        <th>支付方式</th>
+                        <th>购买内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>张三</td>
+                        <td>2019-09-21</td>
+                        <td>S1706080004074530088</td>
+                        <td>¥1030.00</td>
+                        <td>银联支付</td>
+                        <td>代理记账（一年）*1</td>
+                    </tr>
+                    <tr>
+                        <td>张三</td>
+                        <td>2019-09-21</td>
+                        <td>S1706080004074530088</td>
+                        <td>¥1030.00</td>
+                        <td>银联支付</td>
+                        <td>代理记账（一年）*1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="main-pagination">
+                <span>首页</span>
+                <span>上一页</span>
+                <span class="main-pagination-page">1</span>
+                <span>下一页</span>
+                <span>尾页</span>
+            </div>
+            <div class="main-sercive">结算中心...</div>
+    </div>
+    </div>
+    <script src="./js/operator_expenses.js"></script>
+</body>
+
+</html>

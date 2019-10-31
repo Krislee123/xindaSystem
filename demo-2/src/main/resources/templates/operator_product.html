@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/operator_product.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+                <li><a href="operator_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>用户名字</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="operator_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_user.html">
+                    <i class="fa fa-user fa-fw"></i>
+                    <p>用户</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_facilitator.html">
+                    <i class="fa fa-tasks fa-fw"></i>
+                    <p>服务商</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用中心</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_recommend.html">
+                    <i class="fa fa-star fa-fw"></i>
+                    <p>优质推荐</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <p>统计分析</p>
+                </a>
+            </li>
+        </ul>
+        <div class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>服务管理</li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="search">
+                    <input placeholder="服务名称" /><button><i class="fa fa-search fa-fw"></i></button>
+                </div>
+                <div class="product-action">
+                    <span class="up-line"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
+                    <span class="down-line"><i class="fa fa-plus fa-fw"></i>下线</span>
+                </div>
+            </div>
+            <table border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkbox"></th>
+                        <th>产品名称</th>
+                        <th>说明</th>
+                        <th>市场价格</th>
+                        <th>排序<i class="fa fa-long-arrow-up fa-fw"></i></th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox"></td>
+                        <td>电视剧作品登记</td>
+                        <td>电视剧作品登记</td>
+                        <td>¥10000.00元</td>
+                        <td></td>
+                        <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
+                        <td>
+                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox"></td>
+                        <td>电视剧作品登记</td>
+                        <td>电视剧作品登记</td>
+                        <td>¥10000.00元</td>
+                        <td></td>
+                        <td><span class="up-line-mark up-line-mark-red">在线</span></td>
+                        <td><span class="handle-btn"><i class="fa fa-arrow-down fa-fw"></i>下线</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox"></td>
+                        <td>电视剧作品登记</td>
+                        <td>电视剧作品登记</td>
+                        <td>¥10000.00元</td>
+                        <td></td>
+                        <td><span class="up-line-mark up-line-mark-red">在线</span></td>
+                        <td><span class="handle-btn"><i class="fa fa-arrow-down fa-fw"></i>上线</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./js/operator_product.js"></script>
+</body>
+
+</html>

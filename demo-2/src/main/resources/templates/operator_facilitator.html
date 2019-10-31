@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/operator_facilitator.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+            <li><a href="operator_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>用户名字</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="operator_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_user.html">
+                    <i class="fa fa-user fa-fw"></i>
+                    <p>用户</p>
+                </a>
+            </li>
+            <li class="bg-red">
+                <a href="operator_facilitator.html">
+                    <i class="fa fa-tasks fa-fw"></i>
+                    <p>服务商</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用中心</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_recommend.html">
+                    <i class="fa fa-star fa-fw"></i>
+                    <p>优质推荐</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <p>统计分析</p>
+                </a>
+            </li>
+        </ul>
+        <div class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>服务商</li>
+                    <li>/</li>
+                    <li>正常</li>
+                </ul>
+            </div>
+            <ul class="main-tab">
+                <li class="border-red order1">正常</li>
+                <li class="order2">停用</li>
+            </ul>
+            <div class="main-content">
+                <div class="search">
+                    <input placeholder="请输入服务商名称查询" /><button><i class="fa fa-search fa-fw"></i></button>
+                </div>
+            </div>
+            <table border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>服务商名称</th>
+                        <th>地区</th>
+                        <th>联系电话</th>
+                        <th>服务商简介</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>大唐注册代理事务所</td>
+                        <td>海淀区</td>
+                        <td>13312345678</td>
+                        <td>大唐注册代理事务所，拥有专业、高效的团队，针对个别商标案例进行细致分析和小组探讨。平等对待每一位咨询者，认真查询每一枚商标作为公司的作业准则，并创出特色服务“多对一”商标检索项目，为商标的成功注册提供更精确的多重保障。</td>
+                        <td>
+                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
+                            <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>启用</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>大唐注册代理事务所</td>
+                        <td>海淀区</td>
+                        <td>13312345678</td>
+                        <td>大唐注册代理事务所，拥有专业、高效的团队，针对个别商标案例进行细致分析和小组探讨。平等对待每一位咨询者，认真查询每一枚商标作为公司的作业准则，并创出特色服务“多对一”商标检索项目，为商标的成功注册提供更精确的多重保障。</td>
+                        <td>
+                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
+                            <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>停用</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="main-pagination">
+                <span>首页</span>
+                <span>上一页</span>
+                <span class="main-pagination-page">1</span>
+                <span>下一页</span>
+                <span>尾页</span>
+            </div>
+            <div class="main-sercive">根据不同order点击的返回值进行渲染，不需要多个界面来回展示，停用、未通过无推荐选项，单数据库表中要有推荐字段</div>
+        </div>
+    </div>
+    <script src="./js/operator_facilitator.js"></script>
+</body>
+
+</html>

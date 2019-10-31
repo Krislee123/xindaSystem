@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/operator_recommend.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+            <li><a href="operator_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>用户名字</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="operator_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_user.html">
+                    <i class="fa fa-user fa-fw"></i>
+                    <p>用户</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_facilitator.html">
+                    <i class="fa fa-tasks fa-fw"></i>
+                    <p>服务商</p>
+                </a>
+            </li>
+            <li>
+                <a href="operator_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用中心</p>
+                </a>
+            </li>
+            <li class="bg-red">
+                <a href="operator_recommend.html">
+                    <i class="fa fa-star fa-fw"></i>
+                    <p>优质推荐</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <p>统计分析</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>优质推荐</li>
+                </ul>
+            </div>
+            <ul class="main-tab">
+                <li class="border-red business-order">产品列表</li>
+            </ul>
+            <ul class="main-content">
+                <div class="search">
+                    <select>
+                        <option value="1">--选择服务类型</option>
+                        <option value="2">选择服务类型1</option>
+                        <option value="3">选择服务类型2</option>
+                        <option value="4">选择服务类型3</option>
+                    </select>
+                    <select>
+                        <option value="">--选择服务分类</option>
+                    </select>
+                    <input placeholder="服务名称" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <span><span class="font-orange">提示：</span>销量排名靠前的可选为优质服务，价格最低的选择为推荐服务</span>
+                </div>
+                <ul class="sort">
+                    <li>默认排序（按时间排序）</li>
+                    <li>销量</li>
+                    <li>价格</li>
+                </ul>
+            </ul>
+            <table border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>产品名称</th>
+                        <th>说明</th>
+                        <th>销量</th>
+                        <th>服务商</th>
+                        <th>价格</th>
+                        <th>推荐服务</th>
+                        <th>初创企业必备</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>社保补缴（三个月外）</td>
+                        <td>社保补缴三个月外，单月的服务费，社保金额及滞纳金单独核算</td>
+                        <td>8</td>
+                        <td>云智汇咨询服务有限公司</td>
+                        <td>¥500.00</td>
+                        <td><input class="checkbox" type="checkbox" /></td>
+                        <td><input class="checkbox" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td>社保补缴（三个月外）</td>
+                        <td>社保补缴三个月外，单月的服务费，社保金额及滞纳金单独核算</td>
+                        <td>8</td>
+                        <td>云智汇咨询服务有限公司</td>
+                        <td>¥500.00</td>
+                        <td><input class="checkbox" type="checkbox" /></td>
+                        <td><input class="checkbox" type="checkbox" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="main-pagination">
+                <span>首页</span>
+                <span>上一页</span>
+                <span class="main-pagination-page">1</span>
+                <span>下一页</span>
+                <span>尾页</span>
+            </div>
+            <div class="main-sercive">结算中心...</div>
+    </div>
+    </div>
+    <script src="./js/operator_recommend.js"></script>
+</body>
+
+</html>

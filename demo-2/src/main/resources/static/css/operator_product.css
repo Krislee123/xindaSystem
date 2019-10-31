@@ -1,0 +1,139 @@
+.main-content {
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search button {
+    width: 26px;
+    height: 32px;
+    border: 1px solid #d20a4b;
+    border-radius: 0 1px 1px 0;
+    background-color: #ed145b;
+    color: #fff;
+    cursor: pointer;
+}
+
+.product-action span {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.add-product-action {
+    width: 109px;
+    line-height: 30px;
+    background-color: #ed145b;
+}
+
+.up-line,
+.down-line {
+    width: 60px;
+    line-height: 28px;
+    margin-left: 4px;
+}
+
+.up-line {
+    background-color: #6ea7df;
+}
+
+.down-line {
+    background-color: #f67d6a;
+}
+
+table {
+    margin-left: 30px;
+    border-right: 1px solid #eff0f3;
+    border-bottom: 1px solid #eff0f3;
+}
+
+table td:nth-child(1),
+table th:nth-child(1) {
+    border-left: 1px solid #eff0f3;
+}
+
+table td,
+table th {
+    border-top: 1px solid #eff0f3;
+}
+
+thead {
+    background-color: #f5f5f7;
+}
+
+thead tr {
+    font-size: 16px;
+    height: 32px;
+    text-align: left;
+}
+
+tbody tr {
+    height: 48px;
+    font-size: 14px;
+}
+
+table td:nth-child(1),
+table th:nth-child(1) {
+    width: 40px;
+    text-align: center;
+}
+
+table td:nth-child(2) {
+    width: 140px;
+}
+
+table td:nth-child(3) {
+    width: 600px;
+}
+
+table td:nth-child(4) {
+    width: 130px;
+}
+
+table td:nth-child(5) {
+    width: 60px;
+}
+
+table td:nth-child(6) {
+    width: 72px;
+}
+
+table td:nth-child(7) {
+    width: 185px;
+}
+
+.down-line-mark,
+.up-line-mark {
+    width: 42px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 2px;
+    display: inline-block;
+    color: #fff;
+    background-color: #d20a4b
+}
+
+.down-line-mark-orange {
+    background-color: #909399;
+}
+
+.up-line-mark-red {
+    background-color: #67C23A;
+}
+
+.handle-btn {
+    width: 52px;
+    line-height: 22px;
+    text-align: center;
+    color: #6b768c;
+    font-size: 12px;
+    display: inline-block;
+    border: 1px solid #dee0e5;
+    border-radius: 2px;
+    background-color: #f5f5f7;
+    cursor: pointer;
+}

@@ -1,0 +1,120 @@
+.bg-red{
+    background-color: #ed145b;
+}
+
+.header {
+    height: 50px;
+    background-color: #3f4552;
+    display: flex;
+    justify-content: space-between;
+}   
+
+.logo_info {
+    height: 50px;
+    display: inline-block;
+}
+
+.logo_info>img {
+    margin: 9px 0 0 13px;
+}
+
+.platform_name {
+    font-size: 20px;
+    color: #fff;
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 25px;
+}
+
+.user_info {
+    display: inline-flex;
+    line-height: 50px;
+    color: #fff;
+    vertical-align: top;
+    margin-right: 80px;
+}
+
+.user_info li {
+    width: 122px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 13px;
+    cursor: pointer;
+}
+.user_info a {
+    color: #fff;
+}
+.user_info>li:last-child{
+    width: 255px;
+    position: relative;
+    cursor: initial;
+}
+
+.user_info i {
+    margin-right: 5px;
+}
+.user_info>li:last-child img {
+    vertical-align: middle;
+    margin-right: 14px;
+}
+.user_info>li:last-child i{
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.dropdown{
+    width: 120px;
+    position: absolute;
+    right: 20px;
+    background-color: #3f4552;
+    display: none;
+}
+.dropdown li{
+    border-top: 1px solid #fff;
+    cursor: pointer;
+    line-height: 40px;
+}
+.main {
+    min-height: calc(100vh - 50px);
+    display: flex;
+}
+
+.main-nav {
+    width: 64px;
+    height: calc(100vh - 50px);
+    background-color: #3f4552;
+}
+
+.main-nav li a {
+    width: 64px;
+    height: 70px;
+    display: block;
+    color: #fff;
+    text-align: center;
+}
+
+.main-nav li a i {
+    margin-top: 15px;
+}
+
+.main-nav li a p {
+    font-size: 14px;
+}
+.main-details{
+    width: 100%;
+}
+.main-top{
+    height: 36px;
+    line-height: 36px;
+    background-color: #f5f5f7;
+}
+.main-top ul{
+    display: flex;
+    margin-left: 15px;
+}
+.main-top li{
+    color: #8790a3;
+    font-size: 12px;
+    margin: 0 4px;
+}

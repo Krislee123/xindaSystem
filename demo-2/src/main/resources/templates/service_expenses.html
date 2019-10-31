@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/public.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/service_expenses.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo_info">
+            <img src="./images/logo.png" alt="logo">
+            <span class="platform_name">信达</span>
+        </div>
+        <ul class="user_info">
+            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
+            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+            <li>
+                <img src="./images/default_user.png">
+                <span>用户名字</span>
+                <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
+                <ul class="dropdown">
+                    <li>更改信息</li>
+                    <li>退出登录</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <ul class="main-nav">
+            <li>
+                <a href="#">
+                    <i class="fa fa-home fa-fw"></i>
+                    <p>主页</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_orderform.html">
+                    <i class="fa fa-shopping-cart fa-fw"></i>
+                    <p>订单</p>
+                </a>
+            </li>
+            <li class="bg-red">
+                <a href="service_expenses.html">
+                    <i class="fa fa-cny fa-fw"></i>
+                    <p>费用</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_store.html">
+                    <i class="fa fa-institution fa-fw"></i>
+                    <p>店铺</p>
+                </a>
+            </li>
+            <li>
+                <a href="service_setting.html">
+                    <i class="fa fa-cog fa-fw"></i>
+                    <p>设置</p>
+                </a>
+            </li>
+        </ul>
+        <div class="main-details">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa-fw"></i>
+                    </li>
+                    <li>费用</li>
+                </ul>
+            </div>
+            <ul class="main-tab">
+                <li class="border-red order1">费用详情</li>
+                <li class="order2">收益明细</li>
+            </ul>
+            <div class="main-content">
+                <img src="./images//expenses.png" alt="...">
+                <span class="earnings">12345.00</span>
+                <span class="clsd">12345.00</span>
+                <span class="not_settled">12345.00</span>
+            </div>
+            <div class="returns_detailed">
+                收益明细。。。
+            </div>
+        </div>
+    </div>
+    <script src="./js/service_expenses.js"></script>
+</body>
+
+</html>
