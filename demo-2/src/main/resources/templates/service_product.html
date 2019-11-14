@@ -39,25 +39,25 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="#">
+                <a href="/product/findByName">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
             </li>
             <li>
-                <a href="service_orderform.html">
+                <a href="/product/findpname">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
             <li>
-                <a href="service_expenses.html">
+                <a href="/product/expenses">
                     <i class="fa fa-cny fa-fw"></i>
                     <p>费用</p>
                 </a>
             </li>
             <li>
-                <a href="service_store.html">
+                <a href="/product/store">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
@@ -84,7 +84,7 @@
             <div class="main-content">
                 <div class="search">
                <form action="/product/findByName">
-                    <input placeholder="服务名称"  name="name" id="name" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <input placeholder="服务名称"  name="name" /><button><i class="fa fa-search fa-fw"></i></button>
                     </form>
                 </div>
                 <div class="product-action">
@@ -110,7 +110,7 @@
                         <td th:text="${product.marketPrice}"></td>
                         <td ><span class="down-line-mark down-line-mark-orange">下线</span></td>
                         <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+                            <a th:href="@{'/product/updateQ?id='+${product.id}}"><span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span></a>
                            <a th:href="@{'/product/delete?id='+${product.id}}"> <span  class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span></a>
                             <span class="handle-btn"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
                             <span class="down-line-mark down-line-mark-orange">下线</span>
@@ -141,15 +141,15 @@
                 </li>
                 <li>
                     <span>服务价格</span>
-                    <input type="number" name="marketPrice"  placeholder="请输入服务价格">
+                    <input type="number" name="marke 2tPrice"  placeholder="请输入服务价格">
                 </li>
             </ul>
-            <button class="save">提交</button>
-            <button class="cancel">取消</button>
+            <button class="save">提交</button></form>
+            <input type="button"  value="取消 " class="cancel">
            
         </div>
     </div>
-   </form>
+   
     <script src="../js/service_product.js"></script>
 </body>
 

@@ -15,7 +15,7 @@
 		<property name="forceBigDecimals" value="false" />
 	</javaTypeResolver>
 		<!-- 实体类所存放位置 -->
-<javaModelGenerator targetPackage="com.datangdu.cn.model.provider"
+<javaModelGenerator targetPackage="com.datangdu.cn.model.bus_order"
 			targetProject="${project}">
 	<!-- enableSubPackages:是否让schema作为包的后缀 -->
 	<property name="enableSubPackages" value="false" /> 
@@ -33,7 +33,7 @@
 </javaClientGenerator>
 			
 <!-- 配置表信息 -->   
-<table tableName="provider">
+<table tableName="business_order">
 <!-- <columnOverride column="???" property="???" /> -->
 </table>
 	</context>

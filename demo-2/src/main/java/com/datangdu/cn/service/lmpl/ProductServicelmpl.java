@@ -35,5 +35,19 @@ public class ProductServicelmpl implements  ProductService{
 		// TODO Auto-generated method stub
 		return productMapper.deleteByPrimaryKey(id);
 	}
+
+
+
+	@Override
+	public int updateByPrimaryKey(Product record) {
+		// TODO Auto-generated method stub
+		return productMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public Product selectByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return productMapper.selectByPrimaryKey(id);
+	}
 	
 }

@@ -6,11 +6,17 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="product_num" jdbcType="VARCHAR" property="productNum" />
-    <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="amount" jdbcType="INTEGER" property="amount" />
-    <result column="p_price" jdbcType="INTEGER" property="pPrice" />
-    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="provider_info" jdbcType="VARCHAR" property="providerInfo" />
+    <result column="qq" jdbcType="INTEGER" property="qq" />
+    <result column="work_time" jdbcType="VARCHAR" property="workTime" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="register_time" jdbcType="VARCHAR" property="registerTime" />
+    <result column="regin_id" jdbcType="INTEGER" property="reginId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.datangdu.cn.model.product_user.ProductUserWithBLOBs">
+    <result column="provider_img" jdbcType="LONGVARBINARY" property="providerImg" />
+    <result column="auth_file" jdbcType="LONGVARBINARY" property="authFile" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,9 +77,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    p_id, username, password, tel, product_num, product_id, amount, p_price, time
+    p_id, username, password, tel, provider_info, qq, work_time, wechat, email, register_time, 
+    regin_id
   </sql>
-  
+  <sql id="Blob_Column_List">
+    provider_img, auth_file
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.datangdu.cn.model.product_user.ProductUserExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.datangdu.cn.model.product_user.ProductUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -88,9 +113,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from product_user
     where p_id = #{pId,jdbcType=INTEGER}
   </select>
@@ -104,17 +131,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.datangdu.cn.model.product_user.ProductUser">
+  <insert id="insert" parameterType="com.datangdu.cn.model.product_user.ProductUserWithBLOBs">
     insert into product_user (p_id, username, password, 
-      tel, product_num, product_id, 
-      amount, p_price, time
-      )
+      tel, provider_info, qq, 
+      work_time, wechat, email, 
+      register_time, regin_id, provider_img, 
+      auth_file)
     values (#{pId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
-      #{amount,jdbcType=INTEGER}, #{pPrice,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}
-      )
+      #{tel,jdbcType=VARCHAR}, #{providerInfo,jdbcType=VARCHAR}, #{qq,jdbcType=INTEGER}, 
+      #{workTime,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{registerTime,jdbcType=VARCHAR}, #{reginId,jdbcType=INTEGER}, #{providerImg,jdbcType=LONGVARBINARY}, 
+      #{authFile,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.datangdu.cn.model.product_user.ProductUser">
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.product_user.ProductUserWithBLOBs">
     insert into product_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pId != null">
@@ -129,20 +158,32 @@
       <if test="tel != null">
         tel,
       </if>
-      <if test="productNum != null">
-        product_num,
+      <if test="providerInfo != null">
+        provider_info,
       </if>
-      <if test="productId != null">
-        product_id,
+      <if test="qq != null">
+        qq,
       </if>
-      <if test="amount != null">
-        amount,
+      <if test="workTime != null">
+        work_time,
       </if>
-      <if test="pPrice != null">
-        p_price,
+      <if test="wechat != null">
+        wechat,
       </if>
-      <if test="time != null">
-        time,
+      <if test="email != null">
+        email,
+      </if>
+      <if test="registerTime != null">
+        register_time,
+      </if>
+      <if test="reginId != null">
+        regin_id,
+      </if>
+      <if test="providerImg != null">
+        provider_img,
+      </if>
+      <if test="authFile != null">
+        auth_file,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -158,20 +199,32 @@
       <if test="tel != null">
         #{tel,jdbcType=VARCHAR},
       </if>
-      <if test="productNum != null">
-        #{productNum,jdbcType=VARCHAR},
+      <if test="providerInfo != null">
+        #{providerInfo,jdbcType=VARCHAR},
       </if>
-      <if test="productId != null">
-        #{productId,jdbcType=INTEGER},
+      <if test="qq != null">
+        #{qq,jdbcType=INTEGER},
       </if>
-      <if test="amount != null">
-        #{amount,jdbcType=INTEGER},
+      <if test="workTime != null">
+        #{workTime,jdbcType=VARCHAR},
       </if>
-      <if test="pPrice != null">
-        #{pPrice,jdbcType=INTEGER},
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="time != null">
-        #{time,jdbcType=TIMESTAMP},
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reginId != null">
+        #{reginId,jdbcType=INTEGER},
+      </if>
+      <if test="providerImg != null">
+        #{providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="authFile != null">
+        #{authFile,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
@@ -196,22 +249,53 @@
       <if test="record.tel != null">
         tel = #{record.tel,jdbcType=VARCHAR},
       </if>
-      <if test="record.productNum != null">
-        product_num = #{record.productNum,jdbcType=VARCHAR},
+      <if test="record.providerInfo != null">
+        provider_info = #{record.providerInfo,jdbcType=VARCHAR},
       </if>
-      <if test="record.productId != null">
-        product_id = #{record.productId,jdbcType=INTEGER},
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=INTEGER},
       </if>
-      <if test="record.amount != null">
-        amount = #{record.amount,jdbcType=INTEGER},
+      <if test="record.workTime != null">
+        work_time = #{record.workTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.pPrice != null">
-        p_price = #{record.pPrice,jdbcType=INTEGER},
+      <if test="record.wechat != null">
+        wechat = #{record.wechat,jdbcType=VARCHAR},
       </if>
-      <if test="record.time != null">
-        time = #{record.time,jdbcType=TIMESTAMP},
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerTime != null">
+        register_time = #{record.registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginId != null">
+        regin_id = #{record.reginId,jdbcType=INTEGER},
+      </if>
+      <if test="record.providerImg != null">
+        provider_img = #{record.providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.authFile != null">
+        auth_file = #{record.authFile,jdbcType=LONGVARBINARY},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update product_user
+    set p_id = #{record.pId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      provider_info = #{record.providerInfo,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=INTEGER},
+      work_time = #{record.workTime,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      register_time = #{record.registerTime,jdbcType=VARCHAR},
+      regin_id = #{record.reginId,jdbcType=INTEGER},
+      provider_img = #{record.providerImg,jdbcType=LONGVARBINARY},
+      auth_file = #{record.authFile,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -222,16 +306,18 @@
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
-      product_num = #{record.productNum,jdbcType=VARCHAR},
-      product_id = #{record.productId,jdbcType=INTEGER},
-      amount = #{record.amount,jdbcType=INTEGER},
-      p_price = #{record.pPrice,jdbcType=INTEGER},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      provider_info = #{record.providerInfo,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=INTEGER},
+      work_time = #{record.workTime,jdbcType=VARCHAR},
+      wechat = #{record.wechat,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      register_time = #{record.registerTime,jdbcType=VARCHAR},
+      regin_id = #{record.reginId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.product_user.ProductUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.product_user.ProductUserWithBLOBs">
     update product_user
     <set>
       <if test="username != null">
@@ -243,22 +329,50 @@
       <if test="tel != null">
         tel = #{tel,jdbcType=VARCHAR},
       </if>
-      <if test="productNum != null">
-        product_num = #{productNum,jdbcType=VARCHAR},
+      <if test="providerInfo != null">
+        provider_info = #{providerInfo,jdbcType=VARCHAR},
       </if>
-      <if test="productId != null">
-        product_id = #{productId,jdbcType=INTEGER},
+      <if test="qq != null">
+        qq = #{qq,jdbcType=INTEGER},
       </if>
-      <if test="amount != null">
-        amount = #{amount,jdbcType=INTEGER},
+      <if test="workTime != null">
+        work_time = #{workTime,jdbcType=VARCHAR},
       </if>
-      <if test="pPrice != null">
-        p_price = #{pPrice,jdbcType=INTEGER},
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="time != null">
-        time = #{time,jdbcType=TIMESTAMP},
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        register_time = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reginId != null">
+        regin_id = #{reginId,jdbcType=INTEGER},
+      </if>
+      <if test="providerImg != null">
+        provider_img = #{providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="authFile != null">
+        auth_file = #{authFile,jdbcType=LONGVARBINARY},
       </if>
     </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.datangdu.cn.model.product_user.ProductUserWithBLOBs">
+    update product_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      provider_info = #{providerInfo,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=INTEGER},
+      work_time = #{workTime,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=VARCHAR},
+      regin_id = #{reginId,jdbcType=INTEGER},
+      provider_img = #{providerImg,jdbcType=LONGVARBINARY},
+      auth_file = #{authFile,jdbcType=LONGVARBINARY}
     where p_id = #{pId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.product_user.ProductUser">
@@ -266,12 +380,13 @@
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
-      product_num = #{productNum,jdbcType=VARCHAR},
-      product_id = #{productId,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=INTEGER},
-      p_price = #{pPrice,jdbcType=INTEGER},
-      time = #{time,jdbcType=TIMESTAMP}
+      provider_info = #{providerInfo,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=INTEGER},
+      work_time = #{workTime,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=VARCHAR},
+      regin_id = #{reginId,jdbcType=INTEGER}
     where p_id = #{pId,jdbcType=INTEGER}
   </update>
- 
 </mapper>

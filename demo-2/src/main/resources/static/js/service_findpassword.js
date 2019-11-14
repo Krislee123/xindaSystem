@@ -15,32 +15,19 @@ $(function() {
 
 $(".login-btn").on("click", function() {
 	var tel = $(".tel").val();
-var password = $(".password").val();
+	var password = $(".password").val();
 	var imgcode = $(".code").val();
-	//alert(password);
-	if(tel =="" || tel == null ){
-		window.alert("手机号不能为空");
-		$("#msg").css("display", "block");
-        $("#msg").text("手机号不能为空!!!");
-	}else if(password=="" || password == null){
-		window.alert("密码不能为空");
-		$("#msg").css("display", "block");
-        $("#msg").text("密码不能为空!!!");
-	}else if(imgcode =="" || imgcode==null ){
-		window.alert("验证码不能为空");
-		$("#msg").css("display", "block");
-        $("#msg").text("验证码不能为空!!!");
-	}else{
+	var password1 = $(".password1").val();
 $.ajax({
 	type : "post",
 	// 请求路径
-	url : "../product/login",
+	url : "../product/ab",
 	// 请求参数
 	data : {
 		img : imgcode,
 		tel : tel,
 			password : password,
-			
+			password1 : password1,
 		},
 		
 	// 返回数据类型
@@ -48,7 +35,7 @@ $.ajax({
 	success : function(data) {
 		//console.log("成功后返回数据", data);
 		if (data.code == 1) {
-			location.href = "../product/findByName"
+			location.href = "../product/find"
 		} else {
 			alert("信息输入错误!");
 				location.href = "service_login"
@@ -59,7 +46,6 @@ $.ajax({
 			console.log("失败后返回数据", data);
 		}
 	})
-	}
+	
 })
-
 

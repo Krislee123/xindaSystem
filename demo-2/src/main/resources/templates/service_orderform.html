@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http//www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="#">
+                <a href="/product/findByName">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
@@ -51,13 +51,13 @@
                 </a>
             </li>
             <li>
-                <a href="service_expenses.html">
+                <a href="/product/expenses">
                     <i class="fa fa-cny fa-fw"></i>
                     <p>费用</p>
                 </a>
             </li>
             <li>
-                <a href="service_store.html">
+                <a href="/product/store">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
@@ -80,11 +80,13 @@
             </div>
             <ul class="main-tab">
                 <li class="border-red order1">服务中</li>
-                <li class="order2">已完成</li>
+                <!--  <li class="order2">已完成</li>-->
             </ul>
             <div class="main-content">
                 <div class="search">
-                    <input placeholder="请输入服务名称查询" /><button><i class="fa fa-search fa-fw"></i></button>
+                <form action="/product/findpname">
+                    <input placeholder="请输入服务名称查询"  name="name" th:value="${name}"/><button><i class="fa fa-search fa-fw"></i></button>
+               </form>
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -101,42 +103,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>B1739075164</td>
-                        <td>个人代理社保和公积金</td>
-                        <td>张三</td>
-                        <td>13312345678</td>
-                        <td>1</td>
-                        <td>¥1976.00</td>
-                        <td>2017-02-25 08:41:59</td>
+                    <tr th:each="order:${orderList}">
+                        <td th:text="${order.businessNo}"></td>
+                        <td th:text="${order.productName}"></td>
+                        <td th:text="${order.memberName}"></td>
+                        <td th:text="${order.tel}"></td>
+                        <td th:text="${order.amount}"></td>
+                        <td th:text="${order.toyalPrice}"></td>
+                        <td th:tetx="${order.createTime}"></td>
                         <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>B1739075164</td>
-                        <td>个人代理社保和公积金</td>
-                        <td>张三</td>
-                        <td>13312345678</td>
-                        <td>1</td>
-                        <td>¥1976.00</td>
-                        <td>2017-02-25 08:41:59</td>
-                        <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                        </td>
-                    </tr>
+                   
                 </tbody>
             </table>
-            <div class="main-pagination">
-                <span>首页</span>
-                <span>上一页</span>
-                <span class="main-pagination-page">1</span>
-                <span>下一页</span>
-                <span>尾页</span>
-            </div>
-            <div class="main-sercive">根据不同order点击的返回值进行渲染，不需要多个界面来回展示，</div>
-        </div>
-    </div>
+ 
+            
     <script src="../js/service_orderform.js"></script>
 </body>
 

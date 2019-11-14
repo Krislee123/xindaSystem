@@ -9,4 +9,6 @@ public interface ProductService {
 	 List<Product> findByName(String name);
 		int insert(Product record);
 		int deleteByPrimaryKey(Integer id);
+		Product selectByPrimaryKey(Integer id);
+		int updateByPrimaryKey(Product record);
 }
