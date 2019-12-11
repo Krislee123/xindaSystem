@@ -1,10 +1,12 @@
 package com.datangdu.cn.service;
 
-import java.util.List;
-
 import com.datangdu.cn.model.product_user.ProductUser;
-import com.datangdu.cn.model.product_user.ProductUserExample;
+import com.datangdu.cn.model.product_user.ProductUserWithBLOBs;
 
 public interface ProductUserService {
-	   List<ProductUser> selectByExample(ProductUserExample example);
+	  	ProductUser selectByTel(String tel);
+	  	 ProductUserWithBLOBs  selectBytel(ProductUserWithBLOBs record);
+	    int updateByPrimaryKeyWithBLOBs(ProductUserWithBLOBs record);
+	    int productHeadImg(ProductUserWithBLOBs record);
+	    ProductUserWithBLOBs  getUserImg(String tel);
 }

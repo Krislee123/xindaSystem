@@ -1,7 +1,9 @@
 package com.datangdu.cn.model.product_user;
 
 public class ProductUserWithBLOBs extends ProductUser {
-    private byte[] providerImg;
+	
+
+	private byte[] providerImg;
 
     private byte[] authFile;
 

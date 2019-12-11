@@ -22,7 +22,7 @@
             <span class="platform_name">信达</span>
         </div>
         <ul class="user_info">
-            <li><a href="operator_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            <li><a href="re?page=operator_product"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
             <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
             <li>
                 <img src="./images/default_user.png">
@@ -38,39 +38,27 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="operator_orderform.html">
+                <a href="re?page=operator_orderform">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
             <li>
-                <a href="operator_user.html">
+                <a href="re?page=operator_user">
                     <i class="fa fa-user fa-fw"></i>
                     <p>用户</p>
                 </a>
             </li>
             <li class="bg-red">
-                <a href="operator_facilitator.html">
+                <a href="re?page=operator_facilitator">
                     <i class="fa fa-tasks fa-fw"></i>
                     <p>服务商</p>
                 </a>
             </li>
             <li>
-                <a href="operator_expenses.html">
+                <a href="re?page=operator_expenses">
                     <i class="fa fa-cny fa-fw"></i>
                     <p>费用中心</p>
-                </a>
-            </li>
-            <li>
-                <a href="operator_recommend.html">
-                    <i class="fa fa-star fa-fw"></i>
-                    <p>优质推荐</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-bar-chart-o fa-fw"></i>
-                    <p>统计分析</p>
                 </a>
             </li>
         </ul>
@@ -91,7 +79,13 @@
             </ul>
             <div class="main-content">
                 <div class="search">
-                    <input placeholder="请输入服务商名称查询" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <input placeholder="请输入服务商名称查询" class="username"/><button><i class="fa fa-search fa-fw find1"></i></button>
+                    <!--  找到对应的class 通过find1找到搜索框   <i...> 是搜索框   -->
+                </div>
+            </div>
+            <div class="main-content stop-content">
+                <div class="search">
+                    <input placeholder="请输入服务商名称查询" class="username1"/><button><i class="fa fa-search fa-fw find2"></i></button>
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -105,34 +99,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>大唐注册代理事务所</td>
-                        <td>海淀区</td>
-                        <td>13312345678</td>
-                        <td>大唐注册代理事务所，拥有专业、高效的团队，针对个别商标案例进行细致分析和小组探讨。平等对待每一位咨询者，认真查询每一枚商标作为公司的作业准则，并创出特色服务“多对一”商标检索项目，为商标的成功注册提供更精确的多重保障。</td>
-                        <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                            <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>启用</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>大唐注册代理事务所</td>
-                        <td>海淀区</td>
-                        <td>13312345678</td>
-                        <td>大唐注册代理事务所，拥有专业、高效的团队，针对个别商标案例进行细致分析和小组探讨。平等对待每一位咨询者，认真查询每一枚商标作为公司的作业准则，并创出特色服务“多对一”商标检索项目，为商标的成功注册提供更精确的多重保障。</td>
-                        <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                            <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>停用</span>
-                        </td>
-                    </tr>
+                    <!-- 在这展示 -->
                 </tbody>
             </table>
-            <div class="main-pagination">
-                <span>首页</span>
-                <span>上一页</span>
-                <span class="main-pagination-page">1</span>
-                <span>下一页</span>
-                <span>尾页</span>
+            <div class="main-pagination pagez">
+                <!-- 添加分页在这展示 -->
             </div>
             <div class="main-sercive">根据不同order点击的返回值进行渲染，不需要多个界面来回展示，停用、未通过无推荐选项，单数据库表中要有推荐字段</div>
         </div>

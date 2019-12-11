@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ProviderProductMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.provider_product.ProviderProduct">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PROVIDER_ID" jdbcType="VARCHAR" property="providerId" />
+    <result column="SERVICE_NAME" jdbcType="VARCHAR" property="serviceName" />
+    <result column="SERVICE_CONTENT" jdbcType="VARCHAR" property="serviceContent" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="RECOMMEND" jdbcType="INTEGER" property="recommend" />
+    <result column="HIGH_QUALITY" jdbcType="INTEGER" property="highQuality" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="SALE_NUM" jdbcType="INTEGER" property="saleNum" />
+    <result column="PROVIDER_NAME" jdbcType="VARCHAR" property="providerName" />
+    <result column="SERVICE_IMG" jdbcType="LONGVARBINARY" property="serviceImg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PROVIDER_ID, SERVICE_NAME, SERVICE_CONTENT, PRICE, STATUS, RECOMMEND, HIGH_QUALITY, 
+    CREATE_TIME, SALE_NUM, PROVIDER_NAME,SERVICE_IMG
+  </sql>
+
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from provider_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+ 
+    from provider_product
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from provider_product
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample">
+    delete from provider_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.provider_product.ProviderProduct">
+    insert into provider_product (ID, PROVIDER_ID, SERVICE_NAME, 
+      SERVICE_CONTENT, PRICE, STATUS, 
+      RECOMMEND, HIGH_QUALITY, CREATE_TIME, 
+      SALE_NUM, PROVIDER_NAME, SERVICE_IMG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, 
+      #{serviceContent,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{recommend,jdbcType=INTEGER}, #{highQuality,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{saleNum,jdbcType=INTEGER}, #{providerName,jdbcType=VARCHAR}, #{serviceImg,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.provider_product.ProviderProduct">
+    insert into provider_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="providerId != null">
+        PROVIDER_ID,
+      </if>
+      <if test="serviceName != null">
+        SERVICE_NAME,
+      </if>
+      <if test="serviceContent != null">
+        SERVICE_CONTENT,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="recommend != null">
+        RECOMMEND,
+      </if>
+      <if test="highQuality != null">
+        HIGH_QUALITY,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="saleNum != null">
+        SALE_NUM,
+      </if>
+      <if test="providerName != null">
+        PROVIDER_NAME,
+      </if>
+      <if test="serviceImg != null">
+        SERVICE_IMG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="providerId != null">
+        #{providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceContent != null">
+        #{serviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="highQuality != null">
+        #{highQuality,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="saleNum != null">
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="providerName != null">
+        #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImg != null">
+        #{serviceImg,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample" resultType="java.lang.Long">
+    select count(*) from provider_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update provider_product
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.providerId != null">
+        PROVIDER_ID = #{record.providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null">
+        SERVICE_NAME = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceContent != null">
+        SERVICE_CONTENT = #{record.serviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        PRICE = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommend != null">
+        RECOMMEND = #{record.recommend,jdbcType=INTEGER},
+      </if>
+      <if test="record.highQuality != null">
+        HIGH_QUALITY = #{record.highQuality,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.saleNum != null">
+        SALE_NUM = #{record.saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.providerName != null">
+        PROVIDER_NAME = #{record.providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceImg != null">
+        SERVICE_IMG = #{record.serviceImg,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateByExample" parameterType="map">
+    update provider_product
+    set ID = #{record.id,jdbcType=VARCHAR},
+      PROVIDER_ID = #{record.providerId,jdbcType=VARCHAR},
+      SERVICE_NAME = #{record.serviceName,jdbcType=VARCHAR},
+      SERVICE_CONTENT = #{record.serviceContent,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      RECOMMEND = #{record.recommend,jdbcType=INTEGER},
+      HIGH_QUALITY = #{record.highQuality,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      SALE_NUM = #{record.saleNum,jdbcType=INTEGER},
+      PROVIDER_NAME = #{record.providerName,jdbcType=VARCHAR}
+        SERVICE_IMG = #{serviceImg,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.provider_product.ProviderProduct">
+    update provider_product
+    <set>
+      <if test="providerId != null">
+        PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        SERVICE_NAME = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceContent != null">
+        SERVICE_CONTENT = #{serviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null">
+        RECOMMEND = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="highQuality != null">
+        HIGH_QUALITY = #{highQuality,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="saleNum != null">
+        SALE_NUM = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="providerName != null">
+        PROVIDER_NAME = #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImg != null">
+        SERVICE_IMG = #{serviceImg,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.provider_product.ProviderProduct">
+    update provider_product
+    set PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
+      SERVICE_NAME = #{serviceName,jdbcType=VARCHAR},
+      SERVICE_CONTENT = #{serviceContent,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      RECOMMEND = #{recommend,jdbcType=INTEGER},
+      HIGH_QUALITY = #{highQuality,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      SALE_NUM = #{saleNum,jdbcType=INTEGER},
+      PROVIDER_NAME = #{providerName,jdbcType=VARCHAR}
+        SERVICE_IMG = #{serviceImg,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+ <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${name}%'
+  </select>
+  
+  
+  <select id="selectByAll" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  
+  
+  <select id="selectByAll2" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  <select id="selectBypaging" parameterType="com.datangdu.cn.model.provider_product.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+    <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+  
+   <update id="saveServiceImg" parameterType="com.datangdu.cn.model.provider.Provider">
+    update provider_product set SERVICE_IMG = #{serviceImg} where ID = #{id}
+</update>
+  <update id="savePpImg" parameterType="com.datangdu.cn.model.provider_product.ProviderProduct">
+    update provider_product set SERVICE_IMG = #{serviceImg} where ID = #{id}
+</update>
+  
+  
+  
+  
+</mapper>

@@ -14,6 +14,7 @@ $(function() {
 })
 
 $(".login-btn").on("click", function() {
+	
 	var tel = $(".tel").val();
 var password = $(".password").val();
 	var imgcode = $(".code").val();
@@ -34,7 +35,7 @@ var password = $(".password").val();
 $.ajax({
 	type : "post",
 	// 请求路径
-	url : "../product/login",
+	url : "../products/login",
 	// 请求参数
 	data : {
 		img : imgcode,
@@ -48,7 +49,7 @@ $.ajax({
 	success : function(data) {
 		//console.log("成功后返回数据", data);
 		if (data.code == 1) {
-			location.href = "../product/findByName"
+			location.href = "../products/findByName?tel="+tel;
 		} else {
 			alert("信息输入错误!");
 				location.href = "service_login"

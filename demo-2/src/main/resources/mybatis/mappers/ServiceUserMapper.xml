@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ServiceUserMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.service_user.ServiceUser">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="service_ph" jdbcType="VARCHAR" property="servicePh" />
+    <result column="service_pw" jdbcType="VARCHAR" property="servicePw" />
+    <result column="admin_introduction" jdbcType="VARCHAR" property="adminIntroduction" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="ts" jdbcType="TIMESTAMP" property="ts" />
+    <result column="user_introduction" jdbcType="VARCHAR" property="userIntroduction" />
+    <result column="work_ts" jdbcType="VARCHAR" property="workTs" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="wx" jdbcType="VARCHAR" property="wx" />
+    <result column="customer_ph" jdbcType="VARCHAR" property="customerPh" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.datangdu.cn.model.service_user.ServiceUserWithBLOBs">
+    <result column="hp" jdbcType="LONGVARBINARY" property="hp" />
+    <result column="business_license" jdbcType="LONGVARBINARY" property="businessLicense" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, area, service_ph, service_pw, admin_introduction, state, mail, ts, user_introduction, 
+    work_ts, qq, wx, customer_ph
+  </sql>
+  <sql id="Blob_Column_List">
+    hp, business_license
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.datangdu.cn.model.service_user.ServiceUserExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from service_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByLike" parameterType="map" resultMap="BaseResultMap">
+  	select * from service_user where name like '%${name}%'
+  	<if test="example.pageNum >= 0">
+  		limit ${example.pageNum},${example.pageSize}
+  	</if>
+  </select>
+  
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.service_user.ServiceUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from service_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from service_user where id = #{id}
+  </select>
+  <select id="selectByState" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from service_user where state = #{state}
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from service_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from service_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.service_user.ServiceUserExample">
+    delete from service_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.service_user.ServiceUserWithBLOBs">
+    insert into service_user (id, name, area, 
+      service_ph, service_pw, admin_introduction, 
+      state, mail, ts, 
+      user_introduction, work_ts, qq, 
+      wx, customer_ph, hp, 
+      business_license)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{servicePh,jdbcType=VARCHAR}, #{servicePw,jdbcType=VARCHAR}, #{adminIntroduction,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{ts,jdbcType=TIMESTAMP}, 
+      #{userIntroduction,jdbcType=VARCHAR}, #{workTs,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{wx,jdbcType=VARCHAR}, #{customerPh,jdbcType=VARCHAR}, #{hp,jdbcType=LONGVARBINARY}, 
+      #{businessLicense,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.service_user.ServiceUserWithBLOBs">
+    insert into service_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="servicePh != null">
+        service_ph,
+      </if>
+      <if test="servicePw != null">
+        service_pw,
+      </if>
+      <if test="adminIntroduction != null">
+        admin_introduction,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="mail != null">
+        mail,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="userIntroduction != null">
+        user_introduction,
+      </if>
+      <if test="workTs != null">
+        work_ts,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="wx != null">
+        wx,
+      </if>
+      <if test="customerPh != null">
+        customer_ph,
+      </if>
+      <if test="hp != null">
+        hp,
+      </if>
+      <if test="businessLicense != null">
+        business_license,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePh != null">
+        #{servicePh,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePw != null">
+        #{servicePw,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIntroduction != null">
+        #{adminIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIntroduction != null">
+        #{userIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="workTs != null">
+        #{workTs,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wx != null">
+        #{wx,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPh != null">
+        #{customerPh,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null">
+        #{hp,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="businessLicense != null">
+        #{businessLicense,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.service_user.ServiceUserExample" resultType="java.lang.Long">
+    select count(*) from service_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update service_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePh != null">
+        service_ph = #{record.servicePh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePw != null">
+        service_pw = #{record.servicePw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminIntroduction != null">
+        admin_introduction = #{record.adminIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mail != null">
+        mail = #{record.mail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null">
+        ts = #{record.ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userIntroduction != null">
+        user_introduction = #{record.userIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTs != null">
+        work_ts = #{record.workTs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wx != null">
+        wx = #{record.wx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerPh != null">
+        customer_ph = #{record.customerPh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hp != null">
+        hp = #{record.hp,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.businessLicense != null">
+        business_license = #{record.businessLicense,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update service_user
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      service_ph = #{record.servicePh,jdbcType=VARCHAR},
+      service_pw = #{record.servicePw,jdbcType=VARCHAR},
+      admin_introduction = #{record.adminIntroduction,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      mail = #{record.mail,jdbcType=VARCHAR},
+      ts = #{record.ts,jdbcType=TIMESTAMP},
+      user_introduction = #{record.userIntroduction,jdbcType=VARCHAR},
+      work_ts = #{record.workTs,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      wx = #{record.wx,jdbcType=VARCHAR},
+      customer_ph = #{record.customerPh,jdbcType=VARCHAR},
+      hp = #{record.hp,jdbcType=LONGVARBINARY},
+      business_license = #{record.businessLicense,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update service_user
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      service_ph = #{record.servicePh,jdbcType=VARCHAR},
+      service_pw = #{record.servicePw,jdbcType=VARCHAR},
+      admin_introduction = #{record.adminIntroduction,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      mail = #{record.mail,jdbcType=VARCHAR},
+      ts = #{record.ts,jdbcType=TIMESTAMP},
+      user_introduction = #{record.userIntroduction,jdbcType=VARCHAR},
+      work_ts = #{record.workTs,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      wx = #{record.wx,jdbcType=VARCHAR},
+      customer_ph = #{record.customerPh,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.service_user.ServiceUserWithBLOBs">
+    update service_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePh != null">
+        service_ph = #{servicePh,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePw != null">
+        service_pw = #{servicePw,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIntroduction != null">
+        admin_introduction = #{adminIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userIntroduction != null">
+        user_introduction = #{userIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="workTs != null">
+        work_ts = #{workTs,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wx != null">
+        wx = #{wx,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPh != null">
+        customer_ph = #{customerPh,jdbcType=VARCHAR},
+      </if>
+      <if test="hp != null">
+        hp = #{hp,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="businessLicense != null">
+        business_license = #{businessLicense,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.datangdu.cn.model.service_user.ServiceUserWithBLOBs">
+    update service_user
+    set name = #{name,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      service_ph = #{servicePh,jdbcType=VARCHAR},
+      service_pw = #{servicePw,jdbcType=VARCHAR},
+      admin_introduction = #{adminIntroduction,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      user_introduction = #{userIntroduction,jdbcType=VARCHAR},
+      work_ts = #{workTs,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wx = #{wx,jdbcType=VARCHAR},
+      customer_ph = #{customerPh,jdbcType=VARCHAR},
+      hp = #{hp,jdbcType=LONGVARBINARY},
+      business_license = #{businessLicense,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.service_user.ServiceUser">
+    update service_user
+    set name = #{name,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      service_ph = #{servicePh,jdbcType=VARCHAR},
+      service_pw = #{servicePw,jdbcType=VARCHAR},
+      admin_introduction = #{adminIntroduction,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      user_introduction = #{userIntroduction,jdbcType=VARCHAR},
+      work_ts = #{workTs,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wx = #{wx,jdbcType=VARCHAR},
+      customer_ph = #{customerPh,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

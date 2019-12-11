@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ProviderMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.provider.Provider">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PROVIDER_INFO" jdbcType="VARCHAR" property="providerInfo" />
+    <result column="CELLPHONE" jdbcType="VARCHAR" property="cellphone" />
+    <result column="LOGIN_ID" jdbcType="VARCHAR" property="loginId" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="REGION_ID" jdbcType="VARCHAR" property="regionId" />
+    <result column="REGISTER_TIME" jdbcType="VARCHAR" property="registerTime" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="WEIXIN" jdbcType="VARCHAR" property="weixin" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WORK_TIME" jdbcType="VARCHAR" property="workTime" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="RECOMMEND" jdbcType="INTEGER" property="recommend" />
+    <result column="PROVIDER_INTRODUCE" jdbcType="VARCHAR" property="providerIntroduce" />
+    <result column="PROVIDER_IMG" jdbcType="LONGVARBINARY" property="providerImg" />
+    <result column="AUTH_FILE" jdbcType="LONGVARBINARY" property="authFile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, NAME, PROVIDER_INFO, CELLPHONE, LOGIN_ID, PASSWORD, REGION_ID, REGISTER_TIME, 
+    STATUS, WEIXIN, QQ, WORK_TIME, EMAIL, RECOMMEND, PROVIDER_INTRODUCE,PROVIDER_IMG, AUTH_FILE
+  </sql>
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.provider.ProviderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from provider
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+
+    from provider
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from provider
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.provider.ProviderExample">
+    delete from provider
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.provider.Provider">
+    insert into provider (ID, NAME, PROVIDER_INFO, 
+      CELLPHONE, LOGIN_ID, PASSWORD, 
+      REGION_ID, REGISTER_TIME, STATUS, 
+      WEIXIN, QQ, WORK_TIME, 
+      EMAIL, RECOMMEND, PROVIDER_INTRODUCE, 
+      PROVIDER_IMG, AUTH_FILE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{providerInfo,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{regionId,jdbcType=VARCHAR}, #{registerTime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{weixin,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{workTime,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{recommend,jdbcType=INTEGER}, #{providerIntroduce,jdbcType=VARCHAR}, 
+      #{providerImg,jdbcType=LONGVARBINARY}, #{authFile,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.provider.Provider">
+    insert into provider
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="providerInfo != null">
+        PROVIDER_INFO,
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE,
+      </if>
+      <if test="loginId != null">
+        LOGIN_ID,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="regionId != null">
+        REGION_ID,
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="weixin != null">
+        WEIXIN,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="workTime != null">
+        WORK_TIME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="recommend != null">
+        RECOMMEND,
+      </if>
+      <if test="providerIntroduce != null">
+        PROVIDER_INTRODUCE,
+      </if>
+      <if test="providerImg != null">
+        PROVIDER_IMG,
+      </if>
+      <if test="authFile != null">
+        AUTH_FILE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="providerInfo != null">
+        #{providerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginId != null">
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="weixin != null">
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null">
+        #{workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="providerIntroduce != null">
+        #{providerIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="providerImg != null">
+        #{providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="authFile != null">
+        #{authFile,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.provider.ProviderExample" resultType="java.lang.Long">
+    select count(*) from provider
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update provider
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.providerInfo != null">
+        PROVIDER_INFO = #{record.providerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cellphone != null">
+        CELLPHONE = #{record.cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginId != null">
+        LOGIN_ID = #{record.loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionId != null">
+        REGION_ID = #{record.regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerTime != null">
+        REGISTER_TIME = #{record.registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.weixin != null">
+        WEIXIN = #{record.weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTime != null">
+        WORK_TIME = #{record.workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommend != null">
+        RECOMMEND = #{record.recommend,jdbcType=INTEGER},
+      </if>
+      <if test="record.providerIntroduce != null">
+        PROVIDER_INTRODUCE = #{record.providerIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.providerImg != null">
+        PROVIDER_IMG = #{record.providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.authFile != null">
+        AUTH_FILE = #{record.authFile,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update provider
+    set ID = #{record.id,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PROVIDER_INFO = #{record.providerInfo,jdbcType=VARCHAR},
+      CELLPHONE = #{record.cellphone,jdbcType=VARCHAR},
+      LOGIN_ID = #{record.loginId,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      REGION_ID = #{record.regionId,jdbcType=VARCHAR},
+      REGISTER_TIME = #{record.registerTime,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      WEIXIN = #{record.weixin,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      WORK_TIME = #{record.workTime,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      RECOMMEND = #{record.recommend,jdbcType=INTEGER},
+      PROVIDER_INTRODUCE = #{record.providerIntroduce,jdbcType=VARCHAR},
+      PROVIDER_IMG = #{record.providerImg,jdbcType=LONGVARBINARY},
+      AUTH_FILE = #{record.authFile,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.provider.Provider">
+    update provider
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="providerInfo != null">
+        PROVIDER_INFO = #{providerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginId != null">
+        LOGIN_ID = #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null">
+        REGION_ID = #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="weixin != null">
+        WEIXIN = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null">
+        WORK_TIME = #{workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        RECOMMEND = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="providerIntroduce != null">
+        PROVIDER_INTRODUCE = #{providerIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="providerImg != null">
+        PROVIDER_IMG = #{providerImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="authFile != null">
+        AUTH_FILE = #{authFile,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.provider.Provider">
+    update provider
+    set NAME = #{name,jdbcType=VARCHAR},
+      PROVIDER_INFO = #{providerInfo,jdbcType=VARCHAR},
+      CELLPHONE = #{cellphone,jdbcType=VARCHAR},
+      LOGIN_ID = #{loginId,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      REGION_ID = #{regionId,jdbcType=VARCHAR},
+      REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      WEIXIN = #{weixin,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WORK_TIME = #{workTime,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      RECOMMEND = #{recommend,jdbcType=INTEGER},
+      PROVIDER_INTRODUCE = #{providerIntroduce,jdbcType=VARCHAR},
+      PROVIDER_IMG = #{providerImg,jdbcType=LONGVARBINARY},
+      AUTH_FILE = #{authFile,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+ 
+  <select id="selectByLike" parameterType="com.datangdu.cn.model.provider.ProviderExample" resultMap="BaseResultMap">
+    select * from provider where name like '%${likeName}%'  and status=${status}
+  </select>
+  
+    <select id="selectBypaging" parameterType="com.datangdu.cn.model.provider.ProviderExample" resultMap="BaseResultMap">
+    select * from provider where name like '%${likeName}%'  and status=${status}
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+ 
+  <update id="saveUserImg" parameterType="com.datangdu.cn.model.provider.Provider">
+    update provider set PROVIDER_IMG = #{providerImg} where ID = #{id}
+</update>
+<update id="saveFileImg" parameterType="com.datangdu.cn.model.provider.Provider">
+    update provider set AUTH_FILE = #{authFile} where ID = #{id}
+</update>
+ 
+ 
+ 
+</mapper>

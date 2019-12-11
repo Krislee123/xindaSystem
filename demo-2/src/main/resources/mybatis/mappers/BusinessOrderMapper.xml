@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.datangdu.cn.dao.mapper.BusinessOrderMapper">
-  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.bus_order.BusinessOrder">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.businessOrder.BusinessOrder">
     <id column="b_id" jdbcType="INTEGER" property="bId" />
     <result column="business_no" jdbcType="VARCHAR" property="businessNo" />
     <result column="order_info" jdbcType="VARCHAR" property="orderInfo" />
@@ -15,6 +15,7 @@
     <result column="amount" jdbcType="VARCHAR" property="amount" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="evaluate" jdbcType="VARCHAR" property="evaluate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,22 +77,9 @@
   </sql>
   <sql id="Base_Column_List">
     b_id, business_no, order_info, status, toyal_price, pay_type, member_id, create_time, 
-    member_name, product_name, amount, tel, product_id
+    member_name, product_name, amount, tel, product_id, evaluate
   </sql>
-  <select id= "findPname" parameterType="com.datangdu.cn.model.bus_order.BusinessOrderExample" resultMap="BaseResultMap">
-  select distinct(bo.b_id) ,bo.*
-  FROM product p INNER JOIN business_order bo ON  bo.product_id=p.id 
-  <where>
-  <if test="name!=null and name!=''">
-  
- NAME=#{name};
-  </if>
-  
-  </where>
-  
-  
-  </select>
-  <select id="selectByExample" parameterType="com.datangdu.cn.model.bus_order.BusinessOrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrderExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,6 +93,20 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <select id= "findPname" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrderExample" resultMap="BaseResultMap">
+  select distinct(bo.b_id) ,bo.*
+  FROM product p INNER JOIN business_order bo ON  bo.product_id=p.id 
+  <where>
+  <if test="name!=null and name!=''">
+
+ NAME like CONCAT('%',#{name},'%')
+  </if>
+  
+  </where>
+
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -115,25 +117,25 @@
     delete from business_order
     where b_id = #{bId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.bus_order.BusinessOrderExample">
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrderExample">
     delete from business_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.datangdu.cn.model.bus_order.BusinessOrder">
+  <insert id="insert" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrder">
     insert into business_order (b_id, business_no, order_info, 
       status, toyal_price, pay_type, 
       member_id, create_time, member_name, 
       product_name, amount, tel, 
-      product_id)
+      product_id, evaluate)
     values (#{bId,jdbcType=INTEGER}, #{businessNo,jdbcType=VARCHAR}, #{orderInfo,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{toyalPrice,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
       #{memberId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{memberName,jdbcType=VARCHAR}, 
       #{productName,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{productId,jdbcType=INTEGER})
+      #{productId,jdbcType=INTEGER}, #{evaluate,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.datangdu.cn.model.bus_order.BusinessOrder">
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrder">
     insert into business_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bId != null">
@@ -174,6 +176,9 @@
       </if>
       <if test="productId != null">
         product_id,
+      </if>
+      <if test="evaluate != null">
+        evaluate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -216,9 +221,12 @@
       <if test="productId != null">
         #{productId,jdbcType=INTEGER},
       </if>
+      <if test="evaluate != null">
+        #{evaluate,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.datangdu.cn.model.bus_order.BusinessOrderExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrderExample" resultType="java.lang.Long">
     select count(*) from business_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -266,6 +274,9 @@
       <if test="record.productId != null">
         product_id = #{record.productId,jdbcType=INTEGER},
       </if>
+      <if test="record.evaluate != null">
+        evaluate = #{record.evaluate,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -285,12 +296,13 @@
       product_name = #{record.productName,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
-      product_id = #{record.productId,jdbcType=INTEGER}
+      product_id = #{record.productId,jdbcType=INTEGER},
+      evaluate = #{record.evaluate,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.bus_order.BusinessOrder">
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrder">
     update business_order
     <set>
       <if test="businessNo != null">
@@ -329,10 +341,13 @@
       <if test="productId != null">
         product_id = #{productId,jdbcType=INTEGER},
       </if>
+      <if test="evaluate != null">
+        evaluate = #{evaluate,jdbcType=VARCHAR},
+      </if>
     </set>
     where b_id = #{bId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.bus_order.BusinessOrder">
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.businessOrder.BusinessOrder">
     update business_order
     set business_no = #{businessNo,jdbcType=VARCHAR},
       order_info = #{orderInfo,jdbcType=VARCHAR},
@@ -345,7 +360,8 @@
       product_name = #{productName,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
-      product_id = #{productId,jdbcType=INTEGER}
+      product_id = #{productId,jdbcType=INTEGER},
+      evaluate = #{evaluate,jdbcType=VARCHAR}
     where b_id = #{bId,jdbcType=INTEGER}
   </update>
 </mapper>

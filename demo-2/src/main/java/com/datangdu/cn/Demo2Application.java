@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.datangdu.cn.*")
+
 public class Demo2Application {
 
 	public static void main(String[] args) {

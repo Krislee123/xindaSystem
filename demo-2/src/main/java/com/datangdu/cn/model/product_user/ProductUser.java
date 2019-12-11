@@ -4,27 +4,31 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductUser {
-    private Integer pId;
+    protected Integer pId;
 
-    private String username;
+    protected  String username;
 
-    private String password;
+    protected  String password;
 
-    private String tel;
+    protected  String tel;
 
-    private String providerInfo;
+    protected  String providerInfo;
 
-    private Integer qq;
+    protected  String qq;
 
-    private String workTime;
+    protected  String workTime;
 
-    private String wechat;
+    protected  String wechat;
 
-    private String email;
+    protected  String email;
 
-    private String registerTime;
+    protected  String registerTime;
 
-    private Integer reginId;
+    protected  String regin;
+
+    protected  Integer productuId;
+
+    protected  String productname;
 
     public Integer getpId() {
         return pId;
@@ -66,12 +70,12 @@ public class ProductUser {
         this.providerInfo = providerInfo == null ? null : providerInfo.trim();
     }
 
-    public Integer getQq() {
+    public String getQq() {
         return qq;
     }
 
-    public void setQq(Integer qq) {
-        this.qq = qq;
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
     }
 
     public String getWorkTime() {
@@ -106,11 +110,27 @@ public class ProductUser {
         this.registerTime = registerTime == null ? null : registerTime.trim();
     }
 
-    public Integer getReginId() {
-        return reginId;
+    public String getRegin() {
+        return regin;
     }
 
-    public void setReginId(Integer reginId) {
-        this.reginId = reginId;
+    public void setRegin(String regin) {
+        this.regin = regin == null ? null : regin.trim();
+    }
+
+    public Integer getProductuId() {
+        return productuId;
+    }
+
+    public void setProductuId(Integer productuId) {
+        this.productuId = productuId;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname == null ? null : productname.trim();
     }
 }

@@ -1,3 +1,9 @@
+/*var  userInfo  = null;
+$(function(){
+	// 自运行函数
+	// ajax 
+	// success:function(data){userInfo =  data.userInfo}
+})*/
 $(".user-arrow-down").on("click",function(){
     if($(".dropdown").is(":hidden")){
         $(".dropdown").show();
@@ -28,10 +34,14 @@ $(".order3").on("click", function(){
 })
 $(".change-info").on("click", function(event){
     $(".masking").show();
+  //  $("#cmbProvince").val("北京-11-11");
+  //  console.log(userInfo.qq);
 })
+console.log("123")
 $(".save").on("click", function(event){
-    $(".masking").hide();
+   $(".masking").hide();
     console.log("保存");
+ //   console.log($(".cmbProvince").val(),$(".cmbCity").val(),$(".cmbArea").val())
 })
 $(".cancel").on("click", function(event){
     $(".masking").hide();

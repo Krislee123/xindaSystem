@@ -22,16 +22,15 @@
             <span class="platform_name">信达</span>
         </div>
         <ul class="user_info">
-            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
-            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
-            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+              <li><a th:href="@{'/products/findByName?tel='+${tel}}"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            
             <li>
                 <img src="../images/default_user.png">
-                <span>用户名字</span>
+                <span th:text="${tel}"></span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
-                    <li>更改信息</li>
-                    <li>退出登录</li>
+                 <li><a th:href="@{/products/find}">更改信息</a></li>
+                    <li><a th:href="@{/products/index}">退出登录</a></li>
                 </ul>
             </li>
         </ul>
@@ -39,31 +38,26 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="/product/findByName">
+                <a th:href="@{'/products/findByName?tel='+${tel}}">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
             </li>
             <li class="bg-red">
-                <a href="service_orderform.html">
+                <a th:href="@{'/products/findpname?tel='+${tel}}">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
+           
             <li>
-                <a href="/product/expenses">
-                    <i class="fa fa-cny fa-fw"></i>
-                    <p>费用</p>
-                </a>
-            </li>
-            <li>
-                <a href="/product/store">
+                <a th:href="@{'/products/store?tel='+${tel}}">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
             </li>
             <li>
-                <a href="service_setting.html">
+                <a th:href="@{'/products/setQ?tel='+${tel}}">
                     <i class="fa fa-cog fa-fw"></i>
                     <p>设置</p>
                 </a>
@@ -84,7 +78,8 @@
             </ul>
             <div class="main-content">
                 <div class="search">
-                <form action="/product/findpname">
+                <form action="/products/findpname">
+                <input type="hidden" th:value="${tel}" name="tel"/>
                     <input placeholder="请输入服务名称查询"  name="name" th:value="${name}"/><button><i class="fa fa-search fa-fw"></i></button>
                </form>
                 </div>
@@ -99,7 +94,7 @@
                         <th>数量</th>
                         <th>总费用</th>
                         <th>创建时间</th>
-                        <th>操作</th>
+                     <!--     <th>操作</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -110,10 +105,10 @@
                         <td th:text="${order.tel}"></td>
                         <td th:text="${order.amount}"></td>
                         <td th:text="${order.toyalPrice}"></td>
-                        <td th:tetx="${order.createTime}"></td>
-                        <td>
+                        <td th:text="${order.createTime}"></td>
+                   <!--       <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                        </td>
+                        </td>-->
                     </tr>
                    
                 </tbody>

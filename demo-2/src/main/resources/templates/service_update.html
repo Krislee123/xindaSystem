@@ -19,44 +19,42 @@
             <span class="platform_name">信达</span>
         </div>
 <ul class="user_info">
-            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
-            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
-            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+            <li><a th:href="@{'/products/findByName?tel='+${tel}}"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+          
             <li>
                 <img src="../images/default_user.png">
-                <span>用户名字</span>
-                
+                <span th:text="${tel}"></span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
-                    <li>更改信息</li>
-                    <li>退出登录</li>
+                  <li><a th:href="@{/products/find}">更改信息</a></li>
+                    <li><a th:href="@{/products/index}">退出登录</a></li>
                 </ul>
             </li>
         </ul>
     </div>
        <div class="main">
         <ul class="main-nav">
-            <li>
-                <a href="/product/findByName">
+              <li>
+                <a th:href="@{'/products/findByName?tel='+${tel}}">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
             </li>
-            <li>
-                <a href="service_orderform.html">
+            <li class="bg-red">
+                <a th:href="@{'/products/findpname?tel='+${tel}}">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
- 
+           
             <li>
-                <a href="service_store.html">
+                <a th:href="@{'/products/store?tel='+${tel}}">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
             </li>
             <li>
-                <a href="service_setting.html">
+                <a th:href="@{'/products/setQ?tel='+${tel}}">
                     <i class="fa fa-cog fa-fw"></i>
                     <p>设置</p>
                 </a>
@@ -71,23 +69,21 @@
                     <li>服务管理</li>
                 </ul>
             </div>
-<form action="/product/update"> 
+<form action="/products/update"> 
  <input name="id" type="hidden"  th:value="${productList.id}"/>  
+ <input name="tel" type="hidden"  th:value="${tel}"/> 
     <div class="masking">
         <div class="scroller">
         <!--  <input type="text" th:each="product:${productList}"> -->
             <ul>
-                <li>
-                    <span>图片简介</span>
-                    <button>选择图片</button>
-                </li>
+                
                 <li>
                     <span>服务名称</span>
                     <input name="name" placeholder="请输入服务名称" th:value="${productList.name}"/>
                 </li>
                 <li>
                     <span class="ver-top">服务说明</span>
-                    <textarea name="info" id="" cols="45" rows="7" th:value="${productList.info}"></textarea>
+                    <textarea name="info" id="" cols="45" rows="7" th:value="${productList.info}" th:text="${productList.info}" ></textarea>
                 </li>
                 <li>
                     <span>服务价格</span>
@@ -95,7 +91,7 @@
                 </li>
             </ul>
             <button class="save">提交</button>
-            <button class="cancel">取消</button> 
+            <button  type="reset" class="cancel">取消</button> 
            
         </div>
     </div>

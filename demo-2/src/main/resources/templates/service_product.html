@@ -22,16 +22,15 @@
             <span class="platform_name">信达</span>
         </div>
         <ul class="user_info">
-            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
-            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
-            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+           <li><a th:href="@{'/products/findByName?tel='+${tel}}"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+            
             <li>
                 <img src="../images/default_user.png">
-                <span>用户名字</span>
+                  <span th:text="${tel}"></span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
-                    <li>更改信息</li>
-                    <li>退出登录</li>
+                    <li><a th:href="@{/products/find}">更改信息</a></li>
+                    <li><a th:href="@{/products/index}">退出登录</a></li>
                 </ul>
             </li>
         </ul>
@@ -39,31 +38,26 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="/product/findByName">
+                <a th:href="@{'/products/findByName?tel='+${tel}}">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
             </li>
             <li>
-                <a href="/product/findpname">
+                <a th:href="@{'/products/findpname?tel='+${tel}}">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
+           
             <li>
-                <a href="/product/expenses">
-                    <i class="fa fa-cny fa-fw"></i>
-                    <p>费用</p>
-                </a>
-            </li>
-            <li>
-                <a href="/product/store">
+                <a th:href="@{'/products/store?tel='+${tel}}">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
             </li>
             <li>
-                <a href="service_setting.html">
+                <a th:href="@{'/products/setQ?tel='+${tel}}">
                     <i class="fa fa-cog fa-fw"></i>
                     <p>设置</p>
                 </a>
@@ -83,14 +77,13 @@
             </ul>
             <div class="main-content">
                 <div class="search">
-               <form action="/product/findByName">
-                    <input placeholder="服务名称"  name="name" /><button><i class="fa fa-search fa-fw"></i></button>
+               <form action="/products/findByName">
+               <input type="hidden" th:value="${tel}" name="tel"/>
+                    <input placeholder="服务名称" th:value="${name}" name="name" /><button><i class="fa fa-search fa-fw"></i></button>
                     </form>
                 </div>
                 <div class="product-action">
-              <!--   <form action="/product/insert">-->
                     <span class="add-product-action"><i class="fa fa-plus fa-fw"></i>添加服务产品</span>
-                  <!--  </form> -->
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -99,7 +92,7 @@
                         <th>服务名称</th>
                         <th>服务内容</th>
                         <th>价格</th>
-                        <th>状态</th>
+                       <!--   <th>状态</th>-->
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -108,12 +101,12 @@
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.info}"></td>
                         <td th:text="${product.marketPrice}"></td>
-                        <td ><span class="down-line-mark down-line-mark-orange">下线</span></td>
+                        <!--<td ><span class="down-line-mark down-line-mark-orange">下线</span></td>-->
                         <td>
-                            <a th:href="@{'/product/updateQ?id='+${product.id}}"><span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span></a>
-                           <a th:href="@{'/product/delete?id='+${product.id}}"> <span  class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span></a>
-                            <span class="handle-btn"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
-                            <span class="down-line-mark down-line-mark-orange">下线</span>
+                           <a th:href="@{'/products/updateQ?id='+${product.id}+'&tel='+${tel}}"><span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span></a>
+                           <a th:href="@{'/products/delete?id='+${product.id}+'&tel='+${tel}}"> <span  class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span></a>
+                           <!--  <span class="handle-btn"><i class="fa fa-arrow-up fa-fw"></i>上线</span> -->
+                          <!--  <span class="down-line-mark down-line-mark-orange">下线</span>-->
                         </td>
                     </tr>
                   
@@ -121,16 +114,12 @@
             </table>
         </div>
     </div>
-      <form action="/product/insert"> 
+      <form th:action="@{/products/insert}"> 
     <div class="masking">
         <div class="scroller">
-         
+            <input type="hidden" th:value="${tel}" name="tel"/>
             <h3>添加服务产品</h3>
-            <ul>
-                <li>
-                    <span>图片简介</span>
-                    <button>选择图片</button>
-                </li>
+            <ul> 
                 <li>
                     <span>服务名称</span>
                     <input name="name" placeholder="请输入服务名称" />
@@ -141,11 +130,12 @@
                 </li>
                 <li>
                     <span>服务价格</span>
-                    <input type="number" name="marke 2tPrice"  placeholder="请输入服务价格">
+                    <input type="number" name="marketPrice"  placeholder="请输入服务价格">
                 </li>
             </ul>
             <button class="save">提交</button></form>
-            <input type="button"  value="取消 " class="cancel">
+            <button type="reset" class="cancel">取消</button>
+          <!--    <input type="button"  value="取消 " class="cancel">-->
            
         </div>
     </div>

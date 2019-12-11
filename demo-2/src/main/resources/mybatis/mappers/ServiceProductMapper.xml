@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ServiceProductMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.service_product.ServiceProduct">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_explain" jdbcType="VARCHAR" property="serviceExplain" />
+    <result column="service_price" jdbcType="REAL" property="servicePrice" />
+    <result column="service_state" jdbcType="VARCHAR" property="serviceState" />
+    <result column="ts" jdbcType="TIMESTAMP" property="ts" />
+    <result column="sales_volume" jdbcType="INTEGER" property="salesVolume" />
+    <result column="service_id" jdbcType="VARCHAR" property="serviceId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="recommend" jdbcType="VARCHAR" property="recommend" />
+    <result column="entrepreneurship" jdbcType="VARCHAR" property="entrepreneurship" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.datangdu.cn.model.service_product.ServiceProduct">
+    <result column="imag" jdbcType="LONGVARBINARY" property="imag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, service_name, service_explain, service_price, service_state, ts, sales_volume, 
+    service_id, name, recommend, entrepreneurship
+  </sql>
+  <sql id="Blob_Column_List">
+    imag
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.datangdu.cn.model.service_product.ServiceProductExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from service_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.service_product.ServiceProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from service_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from service_product where service_name like '%#{name}%'
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from service_product
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from service_product
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.service_product.ServiceProductExample">
+    delete from service_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.service_product.ServiceProduct">
+    insert into service_product (id, service_name, service_explain, 
+      service_price, service_state, ts, 
+      sales_volume, service_id, name, 
+      recommend, entrepreneurship, imag
+      )
+    values (#{id,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{serviceExplain,jdbcType=VARCHAR}, 
+      #{servicePrice,jdbcType=REAL}, #{serviceState,jdbcType=VARCHAR}, #{ts,jdbcType=TIMESTAMP}, 
+      #{salesVolume,jdbcType=INTEGER}, #{serviceId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{recommend,jdbcType=VARCHAR}, #{entrepreneurship,jdbcType=VARCHAR}, #{imag,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.service_product.ServiceProduct">
+    insert into service_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="serviceExplain != null">
+        service_explain,
+      </if>
+      <if test="servicePrice != null">
+        service_price,
+      </if>
+      <if test="serviceState != null">
+        service_state,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="salesVolume != null">
+        sales_volume,
+      </if>
+      <if test="serviceId != null">
+        service_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="entrepreneurship != null">
+        entrepreneurship,
+      </if>
+      <if test="imag != null">
+        imag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceExplain != null">
+        #{serviceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePrice != null">
+        #{servicePrice,jdbcType=REAL},
+      </if>
+      <if test="serviceState != null">
+        #{serviceState,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesVolume != null">
+        #{salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="entrepreneurship != null">
+        #{entrepreneurship,jdbcType=VARCHAR},
+      </if>
+      <if test="imag != null">
+        #{imag,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.service_product.ServiceProductExample" resultType="java.lang.Long">
+    select count(*) from service_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update service_product
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceExplain != null">
+        service_explain = #{record.serviceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePrice != null">
+        service_price = #{record.servicePrice,jdbcType=REAL},
+      </if>
+      <if test="record.serviceState != null">
+        service_state = #{record.serviceState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ts != null">
+        ts = #{record.ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salesVolume != null">
+        sales_volume = #{record.salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceId != null">
+        service_id = #{record.serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommend != null">
+        recommend = #{record.recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrepreneurship != null">
+        entrepreneurship = #{record.entrepreneurship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imag != null">
+        imag = #{record.imag,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update service_product
+    set id = #{record.id,jdbcType=VARCHAR},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_explain = #{record.serviceExplain,jdbcType=VARCHAR},
+      service_price = #{record.servicePrice,jdbcType=REAL},
+      service_state = #{record.serviceState,jdbcType=VARCHAR},
+      ts = #{record.ts,jdbcType=TIMESTAMP},
+      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
+      service_id = #{record.serviceId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      recommend = #{record.recommend,jdbcType=VARCHAR},
+      entrepreneurship = #{record.entrepreneurship,jdbcType=VARCHAR},
+      imag = #{record.imag,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update service_product
+    set id = #{record.id,jdbcType=VARCHAR},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_explain = #{record.serviceExplain,jdbcType=VARCHAR},
+      service_price = #{record.servicePrice,jdbcType=REAL},
+      service_state = #{record.serviceState,jdbcType=VARCHAR},
+      ts = #{record.ts,jdbcType=TIMESTAMP},
+      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
+      service_id = #{record.serviceId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      recommend = #{record.recommend,jdbcType=VARCHAR},
+      entrepreneurship = #{record.entrepreneurship,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.service_product.ServiceProduct">
+    update service_product
+    <set>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceExplain != null">
+        service_explain = #{serviceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePrice != null">
+        service_price = #{servicePrice,jdbcType=REAL},
+      </if>
+      <if test="serviceState != null">
+        service_state = #{serviceState,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesVolume != null">
+        sales_volume = #{salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null">
+        service_id = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="entrepreneurship != null">
+        entrepreneurship = #{entrepreneurship,jdbcType=VARCHAR},
+      </if>
+      <if test="imag != null">
+        imag = #{imag,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.datangdu.cn.model.service_product.ServiceProduct">
+    update service_product
+    set service_name = #{serviceName,jdbcType=VARCHAR},
+      service_explain = #{serviceExplain,jdbcType=VARCHAR},
+      service_price = #{servicePrice,jdbcType=REAL},
+      service_state = #{serviceState,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      sales_volume = #{salesVolume,jdbcType=INTEGER},
+      service_id = #{serviceId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=VARCHAR},
+      entrepreneurship = #{entrepreneurship,jdbcType=VARCHAR},
+      imag = #{imag,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.service_product.ServiceProduct">
+    update service_product
+    set service_name = #{serviceName,jdbcType=VARCHAR},
+      service_explain = #{serviceExplain,jdbcType=VARCHAR},
+      service_price = #{servicePrice,jdbcType=REAL},
+      service_state = #{serviceState,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      sales_volume = #{salesVolume,jdbcType=INTEGER},
+      service_id = #{serviceId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=VARCHAR},
+      entrepreneurship = #{entrepreneurship,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+ 
+</mapper>

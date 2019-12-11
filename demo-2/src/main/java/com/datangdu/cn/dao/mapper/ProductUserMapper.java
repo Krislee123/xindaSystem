@@ -22,12 +22,21 @@ public interface ProductUserMapper {
 
     List<ProductUserWithBLOBs> selectByExampleWithBLOBs(ProductUserExample example);
 
-    List<ProductUser>selectByExample(ProductUserExample example);
+    List<ProductUser> selectByExample(ProductUserExample example);
+    
 List<ProductUser> Login(ProductUserExample example);
     
-
-    
     public int repassword(ProductUser record);
+    
+    int register(ProductUser record);
+    
+    ProductUser selectByTel(ProductUserExample example);
+    
+    ProductUserWithBLOBs  selectBytel(ProductUserWithBLOBs record);
+    ProductUserWithBLOBs getUserImg(String tel);//图片展示
+
+    int productHeadImg(ProductUserWithBLOBs record);
+
     ProductUserWithBLOBs selectByPrimaryKey(Integer pId);
 
     int updateByExampleSelective(@Param("record") ProductUserWithBLOBs record, @Param("example") ProductUserExample example);

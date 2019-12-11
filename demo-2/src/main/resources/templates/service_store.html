@@ -22,16 +22,15 @@
             <span class="platform_name">信达</span>
         </div>
         <ul class="user_info">
-            <li><a href="service_product.html"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
-            <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
-            <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
+            <li><a th:href="@{'/products/findByName?tel='+${tel}}"><i class="fa fa-cog fa-fw"></i>服务管理</a></li>
+          
             <li>
                 <img src="../images/default_user.png">
-                <span>云智汇咨询服务有限公司</span>
+                <span th:text="${tel}"></span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
-                    <li>更改信息</li>
-                    <li>退出登录</li>
+                    <li><a th:href="@{/products/find}">更改信息</a></li>
+                    <li><a th:href="@{/products/index}">退出登录</a></li>
                 </ul>
             </li>
         </ul>
@@ -39,37 +38,32 @@
     <div class="main">
         <ul class="main-nav">
             <li>
-                <a href="#">
+                <a th:href="@{'/products/findByName?tel='+${tel}}">
                     <i class="fa fa-home fa-fw"></i>
                     <p>主页</p>
                 </a>
             </li>
             <li>
-                <a href="service_orderform.html">
+                <a th:href="@{'/products/findpname?tel='+${tel}}">
                     <i class="fa fa-shopping-cart fa-fw"></i>
                     <p>订单</p>
                 </a>
             </li>
-            <li>
-                <a href="service_expenses.html">
-                    <i class="fa fa-cny fa-fw"></i>
-                    <p>费用</p>
-                </a>
-            </li>
+           
             <li class="bg-red">
-                <a href="service_store.html">
+                <a th:href="@{'/products/store?tel='+${tel}}">
                     <i class="fa fa-institution fa-fw"></i>
                     <p>店铺</p>
                 </a>
             </li>
             <li>
-                <a href="service_setting.html">
+                <a th:href="@{'/products/setQ?tel='+${tel}}">
                     <i class="fa fa-cog fa-fw"></i>
                     <p>设置</p>
                 </a>
             </li>
         </ul>
-        <input name="pId" type="hidden" th:value="${product.pId}">
+       
         <div class="main-details">
             <div class="main-top">
                 <ul>
@@ -83,29 +77,30 @@
                 <li class="border-red order1">店铺信息</li>
             </ul>
             
-            <ul class="store-info">
+            <ul  class="store-info">
+          <li>   <input   name="pId" type="hidden"   th:value="${userList.pId}"/></li>
                 <li>
                     <span>公司介绍</span>
-                    <textarea name="providerInfo" th:value="${product.providerInfo}"></textarea>
+                    <textarea name="providerInfo"  th:text="${userList.providerInfo} " th:value="${userList.providerInfo}"></textarea>
                 </li>
                 <li>
                     <span>工作时间</span>
                     <select>
-                      <option  name="workTime" th:value="${product.workTime}" th:text="${product.workTime}"></option>
+                      <option  name="workTime"  th:value="${userList.workTime}" th:text="${userList.workTime}"></option>
                         <option value="">周一到周五</option>
                         <option value="">周一到周四</option>
                     </select>
                 </li>
                 <li>
                     <span>QQ</span>
-                    <input placeholder="请输入QQ" name="qq" th:value="${product.qq}" />
+                    <input placeholder="请输入QQ"  name="qq" th:value="${userList.qq}" />
                 </li>
                 <li>
                     <span>联系电话</span>
-                    <input placeholder="请输入联系电话" name="tel"  th:value="${product.tel}"/> <i> (固定电话的填写格式：01012345678)</i>
+                    <input placeholder="请输入联系电话" name="tel"   th:value="${userList.tel}"/> <i> (固定电话的填写格式：01012345678)</i>
                 </li>
             </ul>
-            <ul class="main-tab">
+          <!--   <ul class="main-tab">
                 <li class="border-red order1">必填文件</li>
             </ul>
             <ul class="store-info">
@@ -116,7 +111,7 @@
                 <li>
                     <img src="" alt="这里是营业执照上传后展示的呦">
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </div>
     <script src="../js/service_store.js"></script>

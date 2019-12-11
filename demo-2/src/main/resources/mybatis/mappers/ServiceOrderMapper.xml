@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.datangdu.cn.dao.mapper.ServiceOrderMapper">
+  <resultMap id="BaseResultMap" type="com.datangdu.cn.model.service_order.ServiceOrder">
+    <id column="SERVICE_NO" jdbcType="VARCHAR" property="serviceNo" />
+    <result column="MEMBER_ID" jdbcType="VARCHAR" property="memberId" />
+    <result column="SERVICE_ID" jdbcType="VARCHAR" property="serviceId" />
+    <result column="TOTAL_PRICE" jdbcType="INTEGER" property="totalPrice" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="PAY_TYPE" jdbcType="INTEGER" property="payType" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SERVICE_NO, MEMBER_ID, SERVICE_ID, TOTAL_PRICE, STATUS, CREATE_TIME, PAY_TYPE, CONTENT
+  </sql>
+  <select id="selectByExample" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from service_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from service_order
+    where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from service_order
+    where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample">
+    delete from service_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.datangdu.cn.model.service_order.ServiceOrder">
+    insert into service_order (SERVICE_NO, MEMBER_ID, SERVICE_ID, 
+      TOTAL_PRICE, STATUS, CREATE_TIME, 
+      PAY_TYPE, CONTENT)
+    values (#{serviceNo,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR}, #{serviceId,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{payType,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.datangdu.cn.model.service_order.ServiceOrder">
+    insert into service_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serviceNo != null">
+        SERVICE_NO,
+      </if>
+      <if test="memberId != null">
+        MEMBER_ID,
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID,
+      </if>
+      <if test="totalPrice != null">
+        TOTAL_PRICE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="payType != null">
+        PAY_TYPE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serviceNo != null">
+        #{serviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultType="java.lang.Long">
+    select count(*) from service_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update service_order
+    <set>
+      <if test="record.serviceNo != null">
+        SERVICE_NO = #{record.serviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceId != null">
+        SERVICE_ID = #{record.serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPrice != null">
+        TOTAL_PRICE = #{record.totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.payType != null">
+        PAY_TYPE = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update service_order
+    set SERVICE_NO = #{record.serviceNo,jdbcType=VARCHAR},
+      MEMBER_ID = #{record.memberId,jdbcType=VARCHAR},
+      SERVICE_ID = #{record.serviceId,jdbcType=VARCHAR},
+      TOTAL_PRICE = #{record.totalPrice,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      PAY_TYPE = #{record.payType,jdbcType=INTEGER},
+      CONTENT = #{record.content,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datangdu.cn.model.service_order.ServiceOrder">
+    update service_order
+    <set>
+      <if test="memberId != null">
+        MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        TOTAL_PRICE = #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="payType != null">
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datangdu.cn.model.service_order.ServiceOrder">
+    update service_order
+    set MEMBER_ID = #{memberId,jdbcType=VARCHAR},
+      SERVICE_ID = #{serviceId,jdbcType=VARCHAR},
+      TOTAL_PRICE = #{totalPrice,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR}
+    where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}
+  </update>
+ 
+ <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from service_order where service_no like '%${name}%'
+  </select>
+  
+  <select id="selectByLike2" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where status=${status}
+  </select>
+  
+    <select id="selectByLike5" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where service_no like '%${likeName}%' and member_id = '${memberId}'
+    and create_time >= '${data1}'  and create_time &lt;= '${data2}'
+  </select>
+  
+    <select id="selectBypaging" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+  
+  <select id="selectBytime" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where status=${status}  and CREATE_TIME>DATE_ADD(NOW(),INTERVAL -${time} DAY)
+  </select>
+  
+  <select id="selectBytimepage" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}  and CREATE_TIME>DATE_ADD(NOW(),INTERVAL -${time} DAY)
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+  
+  <select id="selectByorderform" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}
+  </select>
+  
+  <select id="selectByorderformpage" parameterType="com.datangdu.cn.model.service_order.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+ 
+ 
+ 
+ 
+</mapper>

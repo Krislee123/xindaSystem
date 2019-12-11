@@ -21,7 +21,7 @@ $(".login-btn").on("click", function() {
 $.ajax({
 	type : "post",
 	// 请求路径
-	url : "../product/ab",
+	url : "ab",
 	// 请求参数
 	data : {
 		img : imgcode,
@@ -35,7 +35,7 @@ $.ajax({
 	success : function(data) {
 		//console.log("成功后返回数据", data);
 		if (data.code == 1) {
-			location.href = "../product/find"
+			location.href = "../products/find"
 		} else {
 			alert("信息输入错误!");
 				location.href = "service_login"
